@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <!--section principale-->
+  <section class="bg-[#494C4F] h-screen flex flex-col justify-center items-center gap-5 sm:w-full md:w-full lg:w-full">
+    <!--bacground dégradéé -->
+    <div class="absolute inset-0 bg-[#494C4F]"></div>
+    <img src="Images/__before.png" class="absolute inset-0 w-full h-screen object-cover opacity-30">
+    <!-- bacground dégradée -->
+    <!-- contenu-->
+    <div class="absolute z-20 flex flex-col gap-4 ">
+      <div class="flex gap-4 justify-center ">
+        <img src="../Red/Images/Link → SVG.png">
+        <h1 class="text-3xl font-bold text-[#FFFFFF]">RED PRODUCT</h1>
+      </div>
+      <!--formulaire-->
+      <form class="flex flex-col  w-md  bg-[#FFFFFF] gap-8 p-6 rounded-lg">
+        <h1>Connectez-vous en tant que Admin</h1>
+        <input type="email" id="E-mail" placeholder="E-mail" class="border-b-2  ">
+        <input type="password" id="passe" placeholder="Mot de passe" class="border-b-2 ">
+        <label for="" class="flex gap-4">
+          <input type="checkbox">Garder-moi connecté</label>
+        <div class="flex justify-center">
+          <button class="bg-[#334155] text-[#f3f4f6] w-40 h-10 rounded-lg "><a href="dashboard.html">Se
+              connecter</a></button>
+        </div>
+      </form>
+      <!--pieds de page-->
+      <div>
+        <p class="font-bold text-[#FFD964] text-center"><a href="password.html">Mot de passe oublié?</a></p>
+        <p class="text-[#FFFFFF]">vous n'avez pas compt? <span class="font-bold text-[#FFD964]">
+            <a href="inscription.html">S'inscrire</a></span></p>
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+
+</html>

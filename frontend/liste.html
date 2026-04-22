@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des hôtels</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!--Dashboard-->
+    <div class="flex h-screen ">
+        <!-- sidebare-->
+        <aside id="sidebare"
+            class=" fixed top-0 left-0 h-full w-64 bg-[#494C4F] transform -translate-x-full transition duration-300 md:translate-x-0 md:static z-20 flex flex-col justify-between">
+            <!--bacground dégradéé -->
+            <div class="absolute inset-0 bg-[#494C4F]"></div>
+            <img src="../Red/Images/__before.png" alt="motif"
+                class="absolute inset-0 w-full h-screen object-cover opacity-30">
+            <!-- bacground dégradée -->
+            <div class="absolute z-20 flex flex-col ">
+                <div class="flex flex-col ">
+                    <h1 class="text-xl font-bold text-[#FFFFFF] p-4 flex items-center gap-2 md:text-2xl">
+                        <img src="../Red/Images/Link → SVG.png"> RED PRODUCT
+                    </h1>
+                    <div class="">
+                        <h1 class="p-4 text-[#FFFFFF]">Principal</h1>
+                        <a href="dashboard.html"
+                            class="flex items-center gap-2 px-4 py-2 hover:bg-[#F0F0F0] hover:text-[#494C4F] text-[#FFFFFF] ">
+                            <img src="../Red/Images/Vector (1).png" class="text-[#FFFFFF]"> Dashboard
+                        </a>
+                        <a href="#"
+                            class="flex items-center gap-2 px-4 py-2  hover:bg-[#F0F0F0] hover:text-[#494C4F] text-[#FFFFFF]">
+                            <img src="../Red/Images/Vector.png" class=" ">Liste des hôteles
+                        </a>
+                    </div>
+                </div>
+                <!-- profil -->
+                <div class="p-4 flex items-center gap-2 mt-[250px] ">
+                    <img src="../Red/Images/a0.jpg.png ">
+                    <div>
+                        <p class="text-sm text-[#FFFFFF]">Karim N</p>
+                        <p class="text-xs text-green-400">● en ligne</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <section class="flex-1 bg-[#F0F0F0] ">
+            <section class="bg-white shadow px-6 py-1 flex items-center justify-between flex-wrap">
+                <div>
+                    <button id="menufot" class="md:hidden text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 class="text-lg font-semibold text-gray-700 md:text-2xl">Listes des hôtels</h1>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Recherche" class="pl-10 pr-4 py-1 rounded-full border  ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 absolute left-3 top-2 size-10 "
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <div class="relative ">
+                        <img src="../Red/Images/Symbol.png" alt="">
+                    </div>
+                    <img src="../Red/Images/a0.jpg.png" alt="">
+                    <div>
+                        <a href="index.html"><img src="../Red/Images/log-out.png" alt=""></a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="px-6 py-3 border-t bg-[#FFFFFF] flex justify-between ">
+                <h2 class="text-2xl font-semibold text-gray-700">Hôtel 8</h2>
+                <div class="">
+                    <button id="openModal" class="bg-[#FFFFFF] border-2 text-white px-2 py-2 rounded-lg "><span
+                            class="text-[#494C4F]">+ Créer un nouvel hôtel</span></button>
+                </div>
+            </section>
+            <!-- Grids -->
+            <div class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-3 px-3 py-2 ">
+                <!-- Card 1-->
+                <div class="bg-white rounded-xl shadow h-[230px] ">
+                    <img src="../Red/Images/hot.png " class="rounded-t-xl w-full  h-[150px]" />
+                    <div class="p-2">
+                        <p class="text-sm text-red-500 J">Boulavard Martin King Dakar 11500</p>
+                        <h3 class="font-bold">Hôtel Terrou-Bi</h3>
+                        <p class="text-black-600 font-semibold ">25 000 XOF / nuit</p>
+                    </div>
+                </div>
+                <!-- Card 2-->
+                <div class="bg-white rounded-xl shadow ">
+                    <img src="../Red/Images/image.png " class="rounded-t-xl w-full  h-[150px] object-cover" />
+                    <div class="p-2">
+                        <p class="text-sm text-red-500">Rte des Almadies, Dakar</p>
+                        <h3 class="font-bold">King Fatd Palace</h3>
+                        <p class="text-black-600 font-semibold ">20 000 XOF / nuit</p>
+                    </div>
+                </div>
+                <!-- Card 3-->
+                <div class="bg-white rounded-xl shadow h-[230px]">
+                    <img src="../Red/Images/image (1).png" class="rounded-t-xl w-full  h-[150px] object-cover" />
+                    <div class="p-2">
+                        <p class="text-sm text-red-500">Rte de la Corniche 0,Dakar 16968</p>
+                        <h3 class="font-bold">Radisson Blu Hotel</h3>
+                        <p class="text-black-600 font-semibold ">22 000 XOF / nuit</p>
+                    </div>
+                </div>
+                <!-- Card 4-->
+                <div class="bg-white rounded-xl shadow h-[230px]">
+                    <img src="../Red/Images/image (2).png" class="rounded-t-xl w-full  h-[150px] object-cover" />
+                    <div class="p-2">
+                        <p class="text-sm text-red-500">Place de l'Independance, Dakar</p>
+                        <h3 class="font-bold">Pullman Dakar Teranga</h3>
+                        <p class="text-black-600 font-semibold ">30 000 XOF / nuit</p>
+                    </div>
+                </div>
+                <!-- Card 5-->
+                <div class="bg-white rounded-xl shadow h-[230px]">
+                    <img src="../Red/Images/image (3).png" class="rounded-t-xl w-full  h-[150px] object-cover" />
+                    <div class="p-2">
+                        <p class="text-sm text-red-500">Lac Rose ,dakar</p>
+                        <h3 class="font-bold">Hôtel Lac Rose</h3>
+                        <p class="text-black-600 font-semibold ">25 000 XOF / nuit</p>
+                    </div>
+                </div>
+                <!-- Card 6-->
+                <div class="bg-white rounded-xl shadow h-[230px]">
+                    <img src="../Red/Images/image (4).png" class="rounded-t-xl w-full  h-[150px] object-cover" />
+                    <div class="p-2">
+                        <p class="text-sm text-red-500">Mbour,Sénégal</p>
+                        <h3 class="font-bold">Hôtel Saly</h3>
+                        <p class="text-black-600 font-semibold ">20 000 XOF / nuit</p>
+                    </div>
+                </div>
+                <!-- Card 7-->
+                <div class="bg-white rounded-xl shadow h-[230px]">
+                    <img src="../Red/Images/image (5).png" class="rounded-t-xl w-full  h-[150px] object-cover" />
+                    <div class="p-2">
+                        <p class="text-sm text-red-500">Bp64,Saly 23000</p>
+                        <h3 class="font-bold">Palm Beach Resort & Spa</h3>
+                        <p class="text-black-600 font-semibold ">22 000 XOF / nuit</p>
+                    </div>
+                </div>
+                <!-- Card 8-->
+                <div class="bg-white rounded-xl shadow h-full   ">
+                    <img src="../Red/Images/image (6).png" class="rounded-t-xl w-full h-[150px] object-cover" />
+                    <div class="p-2">
+                        <p class="text-sm  text-red-500">Place de l'Independance, Dakar</p>
+                        <h3 class="font-bold">Pullman Dakar Teranga</h3>
+                        <p class="text-black-600 font-semibold ">30 000 XOF / nuit</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- section principale du modale-->
+    <div id="modal" class="fixed inset-0 bg-black/40 flex items-center justify-center hidden">
+        <!-- Modal -->
+        <div    class="bg-white w-[600px] rounded-2xl shadow-xl p-3 ">
+            <!-- Header -->
+            <div class="flex items-center mb-6">
+                <button id="closeModal" class="mr-3 text-gray-500 hover:text-black"> ← </button>
+                <h2 class="text-lg font-semibold">CRÉER UN NOUVEAU HÔTEL</h2>
+            </div>
+            <!-- Formulaire -->
+            <form class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm text-gray-600">Nom de l'hôtel</label>
+                    <input type="text" placeholder="CAP Marniane"
+                        class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Adresse</label>
+                    <input type="text" placeholder="Les îles du saloum, Mar Lodj"
+                        class="w-full mt-1 p-2 border rounded-lg ">
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">E-mail</label>
+                    <input type="email" placeholder="informatio@gmail.com" class="w-full mt-1 p-2 border rounded-lg ">
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Numéro de téléphone</label>
+                    <input type="text" placeholder="Les îles du saloum, Mar Lodj"
+                        class="w-full mt-1 p-2 border rounded-lg ">
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Prix par nuit</label>
+                    <input type="text" placeholder="25.000 Xof" class="w-full mt-1 p-2 border rounded-lg ">
+                </div>
+                <div>
+                    <label class="text-gray-600 text-sm">Devise</label>
+                    <select class="w-full mt-1 p-2 rounded-lg border border-gray-300 ">
+                        <option>F XOF</option>
+                        <option>Euro</option>
+                        <option>Dollar</option>
+                    </select>
+                </div>
+                <div class="col-span-2">
+                    <label class="text-gray-600 text-sm">Ajouter une photo</label>
+                    <div
+                        class="mt-2 border-2  border-gray-300 rounded-xl h-40 flex flex-col items-center justify-center text-gray-400 cursor-pointer ">
+                        <i class="fa-solid fa-image size-8"></i>
+                        <p>Ajouter une photo</p>
+                    </div>
+            </form>
+            <div class="flex justify-end mt-8">
+                <button class="bg-gray-600 text-white px-6 py-3 rounded-lg ">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="../Red/Javascript/script.js"></script>
+    
+</body>
+</html>

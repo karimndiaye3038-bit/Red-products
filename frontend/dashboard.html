@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <!--Dashboard-->
+  <div class="flex h-screen">
+    <!-- sidebare-->
+    <aside id="sidebare"
+      class="  fixed top-0 left-0 h-full w-64 bg-[#494C4F] transform -translate-x-full transition duration-300 md:translate-x-0 md:static z-20 flex flex-col justify-between">
+      <!-- Background dégradée -->
+      <div class="absolute inset-0">
+        <img src="../Red/Images/__before.png" class="w-full h-full object-cover opacity-30">
+      </div>
+      <!-- bacground dégradée -->
+      <div class="relative z-10 flex flex-col justify-between h-full">
+        <!--  sedbare (en haut) -->
+        <div>
+          <h1 class="text-xl font-bold text-white p-4 flex items-center gap-2">
+            <img src="../Red/Images/Link → SVG.png"> RED PRODUCT
+          </h1>
+          <div class="mt-4">
+            <h2 class="p-4 text-white">Principal</h2>
+            <a href="#dashboard"
+              class="flex items-center gap-2 px-4 py-2 text-white hover:bg-white hover:text-[#494C4F]">
+              <img src="../Red/Images/layout-dashboard 1.png"> Dashboard
+            </a>
+            <a href="liste.html"
+              class="flex items-center gap-2 px-4 py-2 text-white hover:bg-white hover:text-[#494C4F]">
+              <img src="../Red/Images/liste.png"> Liste des hôtels
+            </a>
+          </div>
+        </div>
+        <!-- sedbare (profil) -->
+        <div class="p-4 flex items-center gap-2">
+          <img src="../Red/Images/a0.jpg.png" class="w-10 h-10 rounded-full">
+          <div>
+            <p class="text-sm text-white">Karim N</p>
+            <p class="text-xs text-green-400">● en ligne</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <section class="flex-1 bg-[#F0F0F0] ">
+      <!--header-->
+      <section class="bg-white shadow px-6 py-3 flex flex-wrap items-center justify-between ">
+        <div>
+          <button id="menufot" class="md:hidden text-gray-700">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+          <h1 class="text-lg font-semibold text-gray-700">Dashboard</h1>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <input type="text" placeholder="Recherche" class="pl-10 pr-4 py-1 rounded-full border hidden md:block ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 absolute left-3 top-2 size-10 " fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg> 
+          </div>
+          <div class="relative ">
+            <img src="../Red/Images/Symbol.png "class="object-contain w-5 h-5">
+          </div>
+          <img src="../Red/Images/a0.jpg.png" alt="" class="object-contain w-5 h-5">
+          <div>
+            <a href="index.html"><img src="../Red/Images/log-out.png" alt="" class="object-contain w-5 h-5"></a>
+          </div>
+        </div>
+      </section>
+      <!---->
+      <section class="px-6 py-4 border-t bg-[#FFFFFF]">
+        <h2 class="text-xl font-semibold text-gray-700">
+          Bienvenue sur RED Product
+        </h2>
+        <p class="text-sm text-gray-500">
+          Lorem ipsum dolor sit amet consectetur
+        </p>
+      </section>
+      <!-- CARDS -->
+      <div id="dashboard" class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2  gap-4 mt-6 p-4  ">
+        <!--card 1-->
+        <div class="bg-white p-4 rounded-lg shadow flex items-center gap-4 ">
+          <div class="  flex items-center justify-center gap-4">
+            <div class="flex">
+              <img src="../Red/Images/span.w-48.png" alt="">
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold">125 <span class="text-xl font-semibold">Formulaire</span></h1>
+              <p>Je ne sais pas quoi mettre</p>
+            </div>
+          </div>
+        </div>
+        <!--card 2-->
+        <div class="bg-white p-4 rounded-lg shadow flex items-center gap-4">
+          <div class="  flex items-center justify-center gap-4">
+            <div class="flex">
+              <img src="../Red/Images/span.w-48 (1).png" alt="" c>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold">40 <span class="text-xl font-semibold">Message</span></h1>
+              <p>Je ne sais pas quoi mettre</p>
+            </div>
+          </div>
+        </div>
+        <!--card3-->
+        <div class="bg-white p-4 rounded-lg shadow flex items-center gap-4">
+          <div class="  flex items-center justify-center gap-4">
+            <div class="flex">
+              <img src="../Red/Images/message.png" alt="">
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold">600 <span class="text-xl font-semibold">Utlisateurs</span></h1>
+              <p>Je ne sais pas quoi mettre</p>
+            </div>
+          </div>
+        </div>
+        <!--card 4-->
+        <div class="bg-white p-4 rounded-lg shadow flex items-center gap-4">
+          <div class="  flex items-center justify-center gap-4">
+            <div class="flex">
+              <img src="../Red/Images/mail.png" alt="">
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold">25 <span class="text-xl font-semibold">e-mail</span></h1>
+              <p>Je ne sais pas quoi mettre</p>
+            </div>
+          </div>
+        </div>
+        <!--card 5-->
+        <div class="bg-white p-4 rounded-lg shadow flex items-center gap-4">
+          <div class="  flex items-center justify-center gap-4">
+            <div class="flex">
+              <img src="../Red/Images/p.png" alt="">
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold">40 <span class="text-xl font-semibold">Hôteles</span></h1>
+              <p>Je ne sais pas quoi mettre</p>
+            </div>
+          </div>
+        </div>
+        <!--card 6-->
+        <div class="bg-white p-4 rounded-lg shadow flex items-center gap-4">
+          <div class="  flex items-center justify-center gap-4">
+            <div class="flex">
+              <img src="../Red/Images/g.png" alt="">
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold">2 <span class="text-xl font-semibold">Entités</span></h1>
+              <p>Je ne sais pas quoi mettre</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="../Red/Javascript/dashboard.js"></script>
+</body>
+
+</html>
