@@ -72,7 +72,7 @@ saveBtn.addEventListener("click", async () => {
       formData.append("image", image);
     }
 
-    const response = await fetch("http://localhost:5000/api/hotels", {
+    const response = await fetch("https://red-products.onrender.com/api/hotels", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`
@@ -108,7 +108,7 @@ async function loadHotels() {
 
   try {
 
-    const response = await fetch("http://localhost:5000/api/hotels", {
+    const response = await fetch("https://red-products.onrender.com/api/hotels", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -127,7 +127,7 @@ async function loadHotels() {
 
         <img
             src="${hotel.image
-                ? `http://localhost:5000/uploads/${hotel.image}`
+                ? `https://red-products.onrender.com/uploads/${hotel.image}`
                 : "../Images/hot.png"}"
             class="w-full h-[150px] object-cover">
 
@@ -193,7 +193,7 @@ async function deleteHotel(id) {
 
     try {
 
-        const response = await fetch(`http://localhost:5000/api/hotels/${id}`, {
+        const response = await fetch(`https://red-products.onrender.com/api/hotels/${id}`, {
 
             method: "DELETE",
 
@@ -236,7 +236,7 @@ async function editHotel(id) {
 
     try {
 
-        const response = await fetch("http://localhost:5000/api/hotels", {
+        const response = await fetch("https://red-products.onrender.com/api/hotels", {
             headers: {
                 Authorization: `Bearer ${token}`
             }

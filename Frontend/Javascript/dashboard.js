@@ -4,7 +4,7 @@ async function loadDashboard() {
 
     try {
 
-        const response = await fetch("http://localhost:5000/api/dashboard/kpis", {
+        const response = await fetch("https://red-products.onrender.com/api/dashboard/kpis", {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
