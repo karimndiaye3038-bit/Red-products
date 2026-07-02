@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des hôtels</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-[#F0F0F0]">
+
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- ================= Sidebar ================= -->
+
+        <aside id="sidebare"
+            class="fixed top-0 left-0 h-screen w-64 bg-[#494C4F] overflow-hidden transform -translate-x-full transition duration-300 md:translate-x-0 z-30">
+
+            <div class="absolute inset-0 bg-[#494C4F]"></div>
+
+            <img src="../Images/__before.png" class="absolute inset-0 w-full h-full object-cover opacity-30">
+
+            <div class="relative z-10 flex flex-col h-full">
+
+                <div>
+
+                    <h1 class="text-white text-2xl font-bold flex items-center gap-2 p-5">
+
+                        <img src="../Images/Link → SVG.png">
+
+                        RED PRODUCT
+
+                    </h1>
+
+                    <p class="text-white px-5 mb-3">
+                        Principal
+                    </p>
+
+                    <a href="dashboard.html"
+                        class="flex items-center gap-3 px-5 py-3 text-white hover:bg-white hover:text-[#494C4F]">
+
+                        <img src="../Images/Vector (1).png">
+
+                        Dashboard
+
+                    </a>
+
+                    <a href="#" class="flex items-center gap-3 px-5 py-3 bg-white text-[#494C4F]">
+
+                        <img src="../Images/Vector.png">
+
+                        Liste des hôtels
+
+                    </a>
+
+                </div>
+
+                <div class="mt-auto p-5 flex items-center gap-3">
+
+                    <img src="../Images/a0.jpg.png">
+
+                    <div>
+
+                        <p class="text-white">
+                            Karim N
+                        </p>
+
+                        <p class="text-green-400 text-sm">
+                            ● En ligne
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- ================= Contenu ================= -->
+
+        <main class="flex-1 md:ml-64 h-screen overflow-y-auto">
+
+            <!-- Navbar -->
+
+            <header
+                class="fixed top-0 left-0 md:left-64 right-0 h-16 bg-white shadow flex items-center justify-between px-6 z-20">
+
+                <div class="flex items-center gap-4">
+
+                    <button id="menufot" class="md:hidden">
+
+                        <i class="fas fa-bars text-2xl"></i>
+
+                    </button>
+
+                    <h1 class="text-2xl font-semibold">
+
+                        Liste des hôtels
+
+                    </h1>
+
+                </div>
+
+                <div class="flex items-center gap-4">
+
+                    <div class="relative">
+
+                        <input type="text" placeholder="Recherche" class="border rounded-full pl-10 pr-4 py-2">
+
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400">
+                        </i>
+
+                    </div>
+
+                    <img src="../Images/Symbol.png">
+
+                    <img src="../Images/a0.jpg.png">
+
+                    <a href="index.html">
+
+                        <img src="../Images/log-out.png">
+
+                    </a>
+
+                </div>
+
+            </header>
+
+            <!-- Début du contenu -->
+
+            <div class="pt-20">
+                <!-- Barre titre -->
+
+                <div class="bg-white px-6 py-4 flex justify-between items-center">
+
+                    <h2 class="text-2xl font-bold text-gray-700">
+                        Hôtels
+                    </h2>
+
+                    <button id="openModal" class="bg-[#494C4F] text-white px-5 py-2 rounded-lg hover:bg-gray-700">
+
+                        + Créer un nouvel hôtel
+
+                    </button>
+
+                </div>
+
+                <!-- Liste des hôtels -->
+
+                <div id="hotelList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-6">
+
+                    <!-- Les cartes seront créées automatiquement par JavaScript -->
+
+                </div>
+
+                <!-- ================= MODAL ================= -->
+
+                <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+                    <div class="bg-white rounded-xl w-[600px] p-6">
+
+                        <div class="flex items-center mb-5">
+
+                            <button id="closeModal" class="mr-3 text-2xl">
+
+                                ←
+
+                            </button>
+
+                            <h2 class="font-bold text-lg">
+
+                                CRÉER UN NOUVEL HÔTEL
+
+                            </h2>
+
+                        </div>
+
+                        <form action="http://localhost:5000/api/hotels" method="POST" enctype="multipart/form-data"
+                            class="grid grid-cols-2 gap-4">
+
+                            <div>
+
+                                <label>Nom de l'hôtel</label>
+
+                                <input id="name" type="text" class="w-full border rounded-lg p-2">
+
+                            </div>
+
+                            <div>
+
+                                <label>Adresse</label>
+
+                                <input id="address" type="text" class="w-full border rounded-lg p-2">
+
+                            </div>
+
+                            <div>
+
+                                <label>Email</label>
+
+                                <input id="email" type="email" class="w-full border rounded-lg p-2">
+
+                            </div>
+
+                            <div>
+
+                                <label>Téléphone</label>
+
+                                <input id="phone" type="text" class="w-full border rounded-lg p-2">
+
+                            </div>
+
+                            <div>
+
+                                <label>Prix par nuit</label>
+
+                                <input id="pricePerNight" type="number" class="w-full border rounded-lg p-2">
+
+                            </div>
+
+                            <div>
+
+                                <label>Devise</label>
+
+                                <select id="currency" class="w-full border rounded-lg p-2">
+
+                                    <option>XOF</option>
+
+                                    <option>Euro</option>
+
+                                    <option>Dollar</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-span-2">
+
+                                <label>Photo</label>
+
+                                <input id="image" name="image" type="file" accept="image/*"
+                                    class="w-full border rounded-lg p-2">
+
+                            </div>
+
+                            <div class="col-span-2 flex justify-end mt-4">
+
+                                <button id="saveHotel" type="button"
+                                    class="bg-[#494C4F] text-white px-6 py-2 rounded-lg">
+
+                                    Enregistrer
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../Javascript/script.js"></script>
+
+</body>
+
+</html>
