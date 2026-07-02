@@ -37,7 +37,7 @@ if (registerForm) {
 
                 alert("Inscription réussie !");
 
-                window.location.href = "connexion.html";
+                window.location.href = "index.html";
 
             } else {
 
