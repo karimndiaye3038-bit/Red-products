@@ -68,8 +68,8 @@ if (loginForm) {
 
         e.preventDefault();
 
-        const email = document.getElementById("E-mail").value.trim();
-        const password = document.getElementById("passe").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
 
         try {
 
