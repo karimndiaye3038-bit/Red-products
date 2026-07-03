@@ -1,26 +1,31 @@
 const nodemailer = require("nodemailer");
 
-const sendEmail = async (options) => {
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
 
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
+const sendEmail = async ({ email, subject, message }) => {
+
+    await transporter.sendMail({
+
+        from: `"RED PRODUCT" <${process.env.EMAIL_USER}>`,
+
+        to: email,
+
+        subject: subject,
+
+        html: `
+            <h2>Réinitialisation du mot de passe</h2>
+
+            <p>${message}</p>
+        `
+
     });
 
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: options.email,
-        subject: options.subject,
-        text: options.message
-    };
-
-    await transporter.sendMail(mailOptions);
 };
 
 module.exports = sendEmail;
