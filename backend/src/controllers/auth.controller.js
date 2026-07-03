@@ -113,7 +113,8 @@ exports.forgotPassword = async (req, res) => {
         user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // 10 min
 
         await user.save();
-const resetUrl = `https://red-products-6t78.vercel.app/reset-password.html?token=${resetToken}`;
+
+        const resetUrl = `http://localhost:5000/api/auth/reset-password/${resetToken}`;
 
         await sendEmail({
             email: user.email,
