@@ -49,7 +49,7 @@ if (registerForm) {
 
             console.error(error);
 
-            // alert("Impossible de contacter le serveur.");
+            alert("Impossible de contacter le serveur.");
 
         }
 
@@ -68,8 +68,8 @@ if (loginForm) {
 
         e.preventDefault();
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
+        const email = document.getElementById("Email").value.trim();
+        const password = document.getElementById("pass").value.trim();
 
         try {
 
@@ -94,9 +94,9 @@ if (loginForm) {
 
                 console.log("Token reçu :", data.token);
 
-localStorage.setItem("token", data.token);
+                localStorage.setItem("token", data.token);
 
-console.log("Token enregistré :", localStorage.getItem("token"));
+                console.log("Token enregistré :", localStorage.getItem("token"));
                 localStorage.setItem("user", JSON.stringify(data.user));
 
                 alert("Connexion réussie");
