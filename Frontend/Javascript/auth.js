@@ -49,7 +49,7 @@ if (registerForm) {
 
             console.error(error);
 
-            alert("Impossible de contacter le serveur.");
+            // alert("Impossible de contacter le serveur.");
 
         }
 
