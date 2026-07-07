@@ -273,3 +273,14 @@ async function editHotel(id) {
     }
 
 }
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+
+    // Supprimer le token
+    localStorage.removeItem("token");
+
+    // Rediriger vers la page de connexion
+    window.location.replace("index.html");
+
+});
