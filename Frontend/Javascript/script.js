@@ -2,22 +2,15 @@
 // PROTECTION DE LA PAGE
 // ============================
 
-const token = localStorage.getItem("token");
+sync function loadDashboard() {
 
-if (!token) {
-    window.location.replace("index.html");
-}
+    // Vérifier si le token existe
+    const token = localStorage.getItem("token");
 
-// ============================
-// DASHBOARD
-// ============================
-
-async function loadDashboard() {
-
-    const users = document.getElementById("users");
-
-    // Si on n'est pas sur la page Dashboard, on ne fait rien
-    if (!users) return;
+    if (!token) {
+        window.location.replace("index.html");
+        return;
+    }
 
     try {
 
@@ -28,7 +21,7 @@ async function loadDashboard() {
             }
         });
 
-        // Vérifier si le token est invalide
+        // Si le token est invalide ou expiré
         if (response.status === 401 || response.status === 403) {
 
             localStorage.removeItem("token");
