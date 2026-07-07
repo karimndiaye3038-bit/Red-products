@@ -8,50 +8,6 @@ if (!token) {
     window.location.replace("index.html");
 }
 
-// ============================
-// DASHBOARD
-// ============================
-
-async function loadDashboard() {
-
-    const users = document.getElementById("users");
-
-    // Si on n'est pas sur la page Dashboard, on ne fait rien
-    if (!users) return;
-
-    try {
-
-        const response = await fetch("https://red-products.onrender.com/api/dashboard/kpis", {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-
-        // Vérifier si le token est invalide
-        if (response.status === 401 || response.status === 403) {
-
-            localStorage.removeItem("token");
-
-            window.location.replace("index.html");
-
-            return;
-        }
-
-        const data = await response.json();
-
-        document.getElementById("users").innerText = data.users;
-        document.getElementById("hotels").innerText = data.hotels;
-        document.getElementById("messages").innerText = data.messages;
-        document.getElementById("emails").innerText = data.emails;
-
-    } catch (error) {
-
-        console.error(error);
-
-    }
-
-}
 
 loadDashboard();
 // ============================
