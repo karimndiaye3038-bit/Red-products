@@ -1,6 +1,12 @@
 async function loadDashboard() {
 
+    // Vérifier si le token existe
     const token = localStorage.getItem("token");
+
+    if (!token) {
+        window.location.replace("index.html");
+        return;
+    }
 
     try {
 
@@ -11,9 +17,17 @@ async function loadDashboard() {
             }
         });
 
-        const data = await response.json();
+        // Si le token est invalide ou expiré
+        if (response.status === 401 || response.status === 403) {
 
-        console.log(data);
+            localStorage.removeItem("token");
+
+            window.location.replace("index.html");
+
+            return;
+        }
+
+        const data = await response.json();
 
         document.getElementById("users").innerText = data.users;
         document.getElementById("hotels").innerText = data.hotels;
@@ -29,15 +43,27 @@ async function loadDashboard() {
 }
 
 loadDashboard();
+
 const menufot = document.getElementById("menufot");
 const sidebare = document.getElementById("sidebare");
 
 menufot.addEventListener("click", () => {
-  sidebare.classList.toggle("-translate-x-full");
+    sidebare.classList.toggle("-translate-x-full");
 });
 
 document.addEventListener("click", (e) => {
-  if (!sidebare.contains(e.target) && !menufot.contains(e.target)) {
-    sidebare.classList.add("-translate-x-full");
-  }
+    if (!sidebare.contains(e.target) && !menufot.contains(e.target)) {
+        sidebare.classList.add("-translate-x-full");
+    }
+});
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+
+    // Supprimer le token
+    localStorage.removeItem("token");
+
+    // Rediriger vers la page de connexion
+    window.location.replace("index.html");
+
 });
