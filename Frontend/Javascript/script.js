@@ -346,20 +346,24 @@ async function editHotel(id) {
 // DÉCONNEXION
 // ============================
 
+// ============================
+// DÉCONNEXION
+// ============================
+
 const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
+
     logoutBtn.addEventListener("click", () => {
 
         if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
 
-            // Supprimer le token
             localStorage.removeItem("token");
 
-            // Aller à la page de connexion
             window.location.replace("index.html");
 
         }
 
     });
+
 }
