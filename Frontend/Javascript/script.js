@@ -1,4 +1,13 @@
 // ============================
+// PROTECTION DE LA PAGE
+// ============================
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.replace("index.html");
+}
+// ============================
 // MODAL
 // ============================
 
@@ -104,23 +113,33 @@ saveBtn.addEventListener("click", async () => {
 
 async function loadHotels() {
 
-  const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-  try {
+    try {
 
-    const response = await fetch("https://red-products.onrender.com/api/hotels", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+        const response = await fetch("https://red-products.onrender.com/api/hotels", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
-    const data = await response.json();
+        // Vérifier si le token est invalide
+        if (response.status === 401 || response.status === 403) {
 
-    const hotelList = document.getElementById("hotelList");
+            localStorage.removeItem("token");
 
-    data.hotels.forEach(hotel => {
+            window.location.replace("index.html");
 
-     hotelList.innerHTML += `
+            return;
+        }
+
+        const data = await response.json();
+
+        const hotelList = document.getElementById("hotelList");
+
+        data.hotels.forEach(hotel => {
+
+            hotelList.innerHTML += `
 <div class="bg-white rounded-xl shadow overflow-hidden">
 
     <div class="relative">
@@ -131,13 +150,11 @@ async function loadHotels() {
                 : "../Images/hot.png"}"
             class="w-full h-[150px] object-cover">
 
-        <!-- Boutons sur l'image -->
         <div class="absolute top-2 right-2 flex gap-2">
 
             <button
                 onclick="editHotel('${hotel._id}')"
-                class="bg-white/80 hover:bg-white text-blue-600 w-9 h-9 rounded-full shadow flex items-center justify-center"
-                title="Modifier">
+                class="bg-white/80 hover:bg-white text-blue-600 w-9 h-9 rounded-full shadow flex items-center justify-center">
 
                 <i class="fa-solid fa-pen-to-square"></i>
 
@@ -145,8 +162,7 @@ async function loadHotels() {
 
             <button
                 onclick="deleteHotel('${hotel._id}')"
-                class="bg-white/80 hover:bg-white text-red-600 w-9 h-9 rounded-full shadow flex items-center justify-center"
-                title="Supprimer">
+                class="bg-white/80 hover:bg-white text-red-600 w-9 h-9 rounded-full shadow flex items-center justify-center">
 
                 <i class="fa-solid fa-trash"></i>
 
@@ -170,12 +186,14 @@ async function loadHotels() {
 
 </div>
 `;
+        });
 
-    });
+    } catch (error) {
 
-  } catch (error) {
-    console.log(error);
-  }
+        console.error(error);
+
+    }
+
 }
 
 loadHotels();
@@ -273,14 +291,20 @@ async function editHotel(id) {
     }
 
 }
+// ============================
+// DÉCONNEXION
+// ============================
+
 const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn.addEventListener("click", () => {
 
-    // Supprimer le token
-    localStorage.removeItem("token");
+    if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
 
-    // Rediriger vers la page de connexion
-    window.location.replace("index.html");
+        localStorage.removeItem("token");
+
+        window.location.replace("index.html");
+
+    }
 
 });
