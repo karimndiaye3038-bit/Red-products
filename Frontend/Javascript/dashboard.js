@@ -59,7 +59,7 @@ document.addEventListener("click", (e) => {
 const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn.addEventListener("click", () => {
-
+ alert("Déconnexion");
     // Supprimer le token
     localStorage.removeItem("token");
 
