@@ -1,16 +1,13 @@
+// ============================
+// PROTECTION DE LA PAGE
+// ============================
 
-async function loadDashboard() {
-
-    // Vérifier si le token existe
-    const token = localStorage.getItem("token");
+const token = localStorage.getItem("token");
 
     if (!token) {
         window.location.replace("index.html");
         return;
     }
-loadDashboard();
-
-
 // ============================
 // MODAL
 // ============================
