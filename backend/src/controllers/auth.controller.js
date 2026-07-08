@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const generateToken = require("../utils/generateToken");
 const crypto = require("crypto");
-const sendEmail = require("../config/email");
+const sendEmail = require("../utils/sendEmail");
 
 // ======================
 // REGISTER
@@ -26,6 +26,29 @@ exports.register = async (req, res) => {
             email,
             password: hash
         });
+ await sendEmail({
+
+    to: user.email,
+
+    subject: "Réinitialisation du mot de passe",
+
+    html: `
+        <h2>Bonjour ${user.name}</h2>
+
+        <p>Cliquez sur le bouton ci-dessous pour modifier votre mot de passe.</p>
+
+        <a href="${resetUrl}"
+        style="
+        background:#334155;
+        color:white;
+        padding:12px 25px;
+        border-radius:8px;
+        text-decoration:none;
+        ">
+        Réinitialiser mon mot de passe
+        </a>
+    `
+});
 
         res.status(201).json({
             message: "Utilisateur créé avec succès",
@@ -107,26 +130,61 @@ exports.forgotPassword = async (req, res) => {
             });
         }
 
+        // Générer un token
         const resetToken = crypto.randomBytes(32).toString("hex");
 
         user.resetPasswordToken = resetToken;
-        user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // 10 min
+        user.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
 
         await user.save();
 
-        const resetUrl = `http://localhost:5000/api/auth/reset-password/${resetToken}`;
+        // URL du frontend (Vercel)
+        const resetUrl = `https://red-products-6t78.vercel.app/reset-password.html?token=${resetToken}`;
 
+        // Envoi de l'e-mail avec Brevo
         await sendEmail({
-            email: user.email,
-            subject: "Réinitialisation du mot de passe",
-            message: `Clique ici pour reset ton mot de passe : ${resetUrl}`
+            to: user.email,
+            subject: "Réinitialisation du mot de passe - RED PRODUCT",
+            html: `
+                <div style="font-family:Arial,sans-serif;padding:20px">
+                    <h2>Bonjour ${user.name},</h2>
+
+                    <p>Vous avez demandé la réinitialisation de votre mot de passe.</p>
+
+                    <p>Cliquez sur le bouton ci-dessous :</p>
+
+                    <a href="${resetUrl}"
+                       style="
+                            display:inline-block;
+                            padding:12px 24px;
+                            background:#334155;
+                            color:#ffffff;
+                            text-decoration:none;
+                            border-radius:8px;
+                       ">
+                        Réinitialiser mon mot de passe
+                    </a>
+
+                    <p style="margin-top:20px">
+                        Ce lien est valable pendant <strong>10 minutes</strong>.
+                    </p>
+
+                    <p>Si vous n'êtes pas à l'origine de cette demande, ignorez simplement cet e-mail.</p>
+
+                    <hr>
+
+                    <p><strong>RED PRODUCT</strong></p>
+                </div>
+            `
         });
 
-        res.json({
-            message: "Email envoyé"
+        res.status(200).json({
+            message: "Email de réinitialisation envoyé."
         });
 
     } catch (err) {
+
+        console.error(err);
 
         res.status(500).json({
             message: err.message
