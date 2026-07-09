@@ -10,6 +10,7 @@ const resetUrl = `${process.env.CLIENT_URL}/reset-password/${token}`;
 // ======================
 exports.register = async (req, res) => {
     try {
+
         const { name, email, password } = req.body;
 
         const exist = await User.findOne({ email });
@@ -27,32 +28,12 @@ exports.register = async (req, res) => {
             email,
             password: hash
         });
- await sendEmail({
 
-    to: user.email,
-
-    subject: "Réinitialisation du mot de passe",
-
-    html: `
-        <h2>Bonjour ${user.name}</h2>
-
-        <p>Cliquez sur le bouton ci-dessous pour modifier votre mot de passe.</p>
-
-        <a href="${resetUrl}"
-        style="
-        background:#334155;
-        color:white;
-        padding:12px 25px;
-        border-radius:8px;
-        text-decoration:none;
-        ">
-        Réinitialiser mon mot de passe
-        </a>
-    `
-});
+        const token = generateToken(user._id);
 
         res.status(201).json({
             message: "Utilisateur créé avec succès",
+            token,
             user: {
                 id: user._id,
                 name: user.name,
@@ -62,11 +43,14 @@ exports.register = async (req, res) => {
         });
 
     } catch (err) {
+
         res.status(500).json({
             message: err.message
         });
+
     }
 };
+      
 
 // ======================
 // LOGIN
