@@ -29,18 +29,12 @@ exports.register = async (req, res) => {
 
     // 👉 Envoi de l'email de confirmation
     await sendEmail({
-      to: user.email,
-      subject: "Bienvenue sur RED PRODUCT",
-      html: `
-        <div style="font-family:Arial,sans-serif;padding:20px">
-          <h2>Bonjour ${user.name},</h2>
-          <p>Votre inscription a été réalisée avec succès.</p>
-          <p>Vous pouvez maintenant vous connecter et accéder à votre tableau de bord.</p>
-          <hr>
-          <p><strong>RED PRODUCT</strong></p>
-        </div>
-      `
-    });
+  to: user.email,
+  subject: "Bienvenue sur RED PRODUCT",
+  html: `<p>Bonjour ${user.name}, votre inscription est réussie !</p>`
+});
+
+  
 
     res.status(201).json({
       message: "Utilisateur créé avec succès",
