@@ -4,6 +4,7 @@ const generateToken = require("../utils/generateToken");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
 
+const resetUrl = `${process.env.CLIENT_URL}/reset-password/${token}`;
 // ======================
 // REGISTER
 // ======================
