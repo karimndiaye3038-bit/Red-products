@@ -3,35 +3,57 @@
 // ===============================
 const registerForm = document.getElementById("registerform");
 
-if (registerForm) {
-  registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+exports.register = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    try {
-      const response = await fetch("https://red-products.onrender.com/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }) // <-- nom au lieu de name
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Inscription réussie !");
-        window.location.href = "index.html";
-      } else {
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Impossible de contacter le serveur.");
+    const exist = await User.findOne({ email });
+    if (exist) {
+      return res.status(400).json({ message: "Email déjà utilisé" });
     }
-  });
-}
+
+    const hash = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: hash
+    });
+
+    const token = generateToken(user._id);
+
+    // 👉 Envoi de l'email de confirmation ici
+    await sendEmail({
+      to: user.email,
+      subject: "Bienvenue sur RED PRODUCT",
+      html: `
+        <div style="font-family:Arial,sans-serif;padding:20px">
+          <h2>Bonjour ${user.name},</h2>
+          <p>Votre inscription a été réalisée avec succès.</p>
+          <p>Vous pouvez maintenant vous connecter et accéder à votre tableau de bord.</p>
+          <hr>
+          <p><strong>RED PRODUCT</strong></p>
+        </div>
+      `
+    });
+
+    // Réponse API
+    res.status(201).json({
+      message: "Utilisateur créé avec succès",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 
 // ===============================
 // CONNEXION
