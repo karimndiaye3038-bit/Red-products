@@ -7,7 +7,7 @@ if (registerForm) {
   registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const nom = document.getElementById("nom").value.trim();
+    const name = document.getElementById("nom").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -15,7 +15,7 @@ if (registerForm) {
       const response = await fetch("https://red-products.onrender.com/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nom, email, password }) // <-- nom au lieu de name
+        body: JSON.stringify({ name, email, password }) // <-- nom au lieu de name
       });
 
       const data = await response.json();
