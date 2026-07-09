@@ -22,6 +22,7 @@ if (registerForm) {
 
       if (response.ok) {
         alert("Inscription réussie !");
+        
         window.location.href = "index.html";
       } else {
         alert(data.message);
@@ -31,21 +32,7 @@ if (registerForm) {
       alert("Impossible de contacter le serveur.");
     }
   });
-  // Après la création de l'utilisateur
-await sendEmail({
-  to: user.email,
-  subject: "Bienvenue sur RED PRODUCT",
-  html: `
-    <div style="font-family:Arial,sans-serif;padding:20px">
-      <h2>Bonjour ${user.name},</h2>
-      <p>Votre inscription a été réalisée avec succès.</p>
-      <p>Vous pouvez maintenant vous connecter et accéder à votre tableau de bord.</p>
-      <hr>
-      <p><strong>RED PRODUCT</strong></p>
-    </div>
-  `
-});
-
+  
 }
 
 // ===============================
