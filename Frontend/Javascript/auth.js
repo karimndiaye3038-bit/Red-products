@@ -4,119 +4,67 @@
 const registerForm = document.getElementById("registerform");
 
 if (registerForm) {
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    registerForm.addEventListener("submit", async (e) => {
+    const nom = document.getElementById("nom").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-        e.preventDefault();
+    try {
+      const response = await fetch("https://red-products.onrender.com/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nom, email, password }) // <-- nom au lieu de name
+      });
 
-        const name = document.getElementById("nom").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
+      const data = await response.json();
 
-        try {
-
-            const response = await fetch("https://red-products.onrender.com/api/auth/register", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    name,
-                    email,
-                    password
-                })
-
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-
-                alert("Inscription réussie !");
-
-                window.location.href = "index.html";
-
-            } else {
-
-                alert(data.message);
-
-            }
-
-        } catch (error) {
-
-            console.error(error);
-
-            alert("Impossible de contacter le serveur.");
-
-        }
-
-    });
-
+      if (response.ok) {
+        alert("Inscription réussie !");
+        window.location.href = "index.html";
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Impossible de contacter le serveur.");
+    }
+  });
 }
+
 // ===============================
 // CONNEXION
 // ===============================
-
-const loginForm = document.querySelector("form");
+const loginForm = document.getElementById("loginform"); // <-- ciblage précis
 
 if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    loginForm.addEventListener("submit", async (e) => {
+    const email = document.getElementById("email").value.trim(); // <-- email
+    const password = document.getElementById("password").value.trim(); // <-- password
 
-        e.preventDefault();
+    try {
+      const response = await fetch("https://red-products.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
 
-        const email = document.getElementById("Email").value.trim();
-        const password = document.getElementById("pass").value.trim();
+      const data = await response.json();
 
-        try {
-
-            const response = await fetch("https://red-products.onrender.com/api/auth/login", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    email,
-                    password
-                })
-
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-
-                console.log("Token reçu :", data.token);
-
-                localStorage.setItem("token", data.token);
-
-                console.log("Token enregistré :", localStorage.getItem("token"));
-                localStorage.setItem("user", JSON.stringify(data.user));
-
-                alert("Connexion réussie");
-
-                window.location.href = "dashboard.html";
-
-            } else {
-
-                alert(data.message);
-
-            }
-
-        } catch (err) {
-
-            console.error(err);
-
-            alert("Impossible de contacter le serveur.");
-
-        }
-
-    });
-
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        alert("Connexion réussie !");
+        window.location.href = "dashboard.html";
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Impossible de contacter le serveur.");
+    }
+  });
 }
