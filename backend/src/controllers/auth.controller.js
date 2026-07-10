@@ -28,12 +28,42 @@ exports.register = async (req, res) => {
     const token = generateToken(user._id);
 
     // 👉 Envoi de l'email de confirmation
-    await sendEmail({
-  to: user.email,
-  subject: "Bienvenue sur RED PRODUCT",
-  html: `<p>Bonjour ${user.name}, votre inscription est réussie !</p>`
-});
+ await sendEmail({
+    to: user.email,
+    subject: "Bienvenue sur RED PRODUCT 🎉",
+    html: `
+    <div style="font-family:Arial,sans-serif;padding:20px;">
+        <h2 style="color:#334155;">Bienvenue ${user.name} 👋</h2>
 
+        <p>Votre compte <strong>RED PRODUCT</strong> a été créé avec succès.</p>
+
+        <p>Vous pouvez maintenant vous connecter et profiter de toutes les fonctionnalités de notre plateforme.</p>
+
+        <div style="margin:30px 0;">
+            <a href="https://red-products-6t78.vercel.app/"
+            style="
+                background:#334155;
+                color:#ffffff;
+                padding:12px 25px;
+                text-decoration:none;
+                border-radius:6px;
+                display:inline-block;
+            ">
+                Se connecter
+            </a>
+        </div>
+
+        <hr>
+
+        <p><strong>Email :</strong> ${user.email}</p>
+        <p><strong>Date d'inscription :</strong> ${new Date().toLocaleString("fr-FR")}</p>
+
+        <p>Merci de votre confiance.</p>
+
+        <h3>L'équipe RED PRODUCT ❤️</h3>
+    </div>
+    `
+});
   
 
     res.status(201).json({
