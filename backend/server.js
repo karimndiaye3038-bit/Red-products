@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const app = require("./src/app");
 const connectDB = require("./src/config/db");
+console.log("MONGO_URI =", process.env.MONGO_URI);
 
 connectDB();
 
