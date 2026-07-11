@@ -7,9 +7,9 @@ async function sendEmail({ to, subject, html }) {
         const result = await brevo.transactionalEmails.sendTransacEmail({
 
             sender: {
-    name: "RED PRODUCT",
-    email: "karimndiaye3038@gmail.com"
-},
+                name: "RED PRODUCT",
+                email: process.env.EMAIL_USER
+            },
 
             to: [
                 {
